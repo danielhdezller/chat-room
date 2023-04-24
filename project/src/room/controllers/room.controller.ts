@@ -9,7 +9,7 @@ import { Room } from '../entities/room.entity';
 export class RoomController {
   constructor(private readonly roomService: RoomService) {}
   @Post()
-  @ApiResponse({type: Room})
+  @ApiResponse({ type: Room })
   async createRoom(@Body() createRoom: CreateRoomDto) {
     return this.roomService.createRoom(createRoom);
   }
