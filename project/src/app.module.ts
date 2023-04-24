@@ -4,6 +4,7 @@ import { normalize } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './database/ormconfig';
 import { UserModule } from './user/user.module';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
       },
     }),
     UserModule,
+    RoomModule,
   ],
   controllers: [],
   providers: [],
