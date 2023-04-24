@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateRoomDto } from '../dtos/create-room.dto';
 import { RoomService } from '../services/room.service';
@@ -12,5 +12,14 @@ export class RoomController {
   @ApiResponse({ type: Room })
   async createRoom(@Body() createRoom: CreateRoomDto) {
     return this.roomService.createRoom(createRoom);
+  }
+
+  @Post('/:chatRoomId/users/:userId')
+  @ApiResponse({ type: Room })
+  async addUserToRoom(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('chatRoomId', ParseIntPipe) chatRoomId: number,
+  ) {
+    return this.roomService.addUserToRoom({ userId, chatRoomId });
   }
 }
