@@ -10,7 +10,7 @@ export class RoomController {
   constructor(private readonly roomService: RoomService) {}
   @Post()
   @ApiResponse({ type: Room })
-  async createRoom(@Body() createRoom: CreateRoomDto) {
+  async createRoom(@Body() createRoom: CreateRoomDto): Promise<Room> {
     return this.roomService.createRoom(createRoom);
   }
 
@@ -19,7 +19,7 @@ export class RoomController {
   async addUserToRoom(
     @Param('userId', ParseIntPipe) userId: number,
     @Param('chatRoomId', ParseIntPipe) chatRoomId: number,
-  ) {
+  ): Promise<Room> {
     return this.roomService.addUserToRoom({ userId, chatRoomId });
   }
 }

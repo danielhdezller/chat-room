@@ -20,10 +20,16 @@ export class Message extends AppBaseEntity {
 
   @Column()
   @IsInt()
+  @DtoProperty({
+    example: 2,
+  })
   public roomId: number;
 
   @Column()
   @IsInt()
+  @DtoProperty({
+    example: 1,
+  })
   public userId: number;
 
   @ManyToOne(() => Room, (room) => room.roomToMessages)

@@ -10,7 +10,7 @@ export class RoomService {
     private readonly dataSource: DataSource,
     private readonly userService: UserService,
   ) {}
-  async createRoom(createRoom: CreateRoomDto) {
+  async createRoom(createRoom: CreateRoomDto): Promise<Room> {
     const roomRepository = this.dataSource.getRepository(Room);
     const room = roomRepository.create({ name: createRoom.name });
     return roomRepository.save(room);
@@ -22,7 +22,7 @@ export class RoomService {
   }: {
     userId: number;
     chatRoomId: number;
-  }) {
+  }): Promise<Room> {
     const roomRepository = this.dataSource.getRepository(Room);
     const room = await roomRepository.findOne({
       where: { id: chatRoomId },
