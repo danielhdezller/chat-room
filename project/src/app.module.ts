@@ -5,6 +5,7 @@ import { AppConfigModule } from '@/config-provider/app-config.module';
 import { normalize } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './database/ormconfig';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { dataSourceOptions } from './database/ormconfig';
         };
       },
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
