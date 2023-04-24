@@ -15,24 +15,24 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD:-ChatRoomAppUserSecret}
       - POSTGRES_DB=${DB_DATABASE:-ChatRoom}
 
+  chat-room-nest-server:
+      build:
+        context: .
+        dockerfile: ./images/nestjs/Dockerfile
+      restart: "no"
+      ports:
+      - ${NODE_PORT:-3000}:3000
+      - ${NODE_DEBUGGER_PORT:-9229}:9229
+      - ${NODE_DEBUGGER_TEST_PORT:-9230}:9230
+      networks:
+      - chat-room-network
+      volumes:
+      - ../../project:/usr/src/project
+      - ./images/nestjs/entrypoint.sh:/entrypoint.sh
+      depends_on:
+      - chat-room-sql-server
+
 
 networks:
   chat-room-network:
     external: false
-
-#   chat-room-nest-server:
-#       build:
-#         context: .
-#         dockerfile: ./images/nestjs/Dockerfile
-#       restart: "no"
-#       ports:
-#       - ${NODE_PORT:-3000}:3000
-#       - ${NODE_DEBUGGER_PORT:-9229}:9229
-#       - ${NODE_DEBUGGER_TEST_PORT:-9230}:9230
-#       networks:
-#       - chat-room-network
-#       volumes:
-#       - ../../project:/usr/src/project
-#       - ./images/nestjs/entrypoint.sh:/entrypoint.sh
-#       depends_on:
-#       - chat-room-sql-server

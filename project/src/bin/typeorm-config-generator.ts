@@ -1,8 +1,8 @@
-import { promises } from 'fs';
 import { normalize } from 'path';
 import { ConfigProviderService } from '@/config-provider/services/config-provider.service';
+import { DataSource } from 'typeorm';
 
-(async () => {
+const config = async () => {
   const configProviderService = new ConfigProviderService({
     envPath: normalize(`${__dirname}/../../config.json`),
   });
@@ -11,19 +11,12 @@ import { ConfigProviderService } from '@/config-provider/services/config-provide
   const configuration = configProviderService.getAppConfiguration();
   const typeOrmConfig = configuration.getTypeOrmConfig();
 
-  const ormConfig = {
+  const config = {
     ...typeOrmConfig,
-    entities: ['src/**/*.entity{.ts,.js}'],
-    migrations: ['./src/database/migrations/**/*{.ts,.js}'],
-    cli: {
-      migrationsDir: './src/database/migrations',
-    },
+    entities: ['./**/*.entity.js'],
+    migrations: ['dist/database/migrations/**/*.js'],
   };
+  return new DataSource(config);
+};
 
-  const ormConfigPath = normalize(__dirname + '../../../ormconfig.json');
-  const typeOrmFileData = new Uint8Array(
-    Buffer.from(JSON.stringify(ormConfig, null, 4)),
-  );
-  console.log(ormConfigPath);
-  await promises.writeFile(ormConfigPath, typeOrmFileData);
-})();
+export default config();

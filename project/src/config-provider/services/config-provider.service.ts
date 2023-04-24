@@ -33,7 +33,7 @@ export class ConfigProviderService {
    * @returns {Promise<any>}
    * @memberof ConfigProviderService
    */
-  async getEnvObject(): Promise<any> {
+  getEnvObject(): unknown {
     if (this.configurationProviderOptions.envObject) {
       return this.configurationProviderOptions.envObject;
     }

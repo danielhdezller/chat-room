@@ -2,14 +2,19 @@ import { Module } from '@nestjs/common';
 import { AppConfigModule } from '@/config-provider/app-config.module';
 import { normalize } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { dataSourceOptions } from './database/ormconfig';
 import { UserModule } from './user/user.module';
 import { RoomModule } from './room/room.module';
+import { AppConfiguration } from './config-provider/configurations/app.configuration';
 
 @Module({
   imports: [
-    // Typeorm App Configuration
-    TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forRootAsync({
+      imports: [AppConfigModule.deferred()],
+      inject: [AppConfiguration],
+      useFactory: async (appConfiguration: AppConfiguration) => {
+        return appConfiguration.getTypeOrmConfig();
+      },
+    }),
     // Configuration provider module
     AppConfigModule.forRootAsync(AppConfigModule, {
       useFactory: () => {

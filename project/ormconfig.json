@@ -1,9 +1,9 @@
 {
     "type": "postgres",
-    "host": "chat-room-sql-server",
+    "host": "localhost",
     "port": 5432,
     "username": "ChatRoomAppUser",
-    "password": "ChatRoomAppUserSecret",
+    "password": "ChatRoom123!",
     "synchronize": false,
     "database": "ChatRoom",
     "entities": [

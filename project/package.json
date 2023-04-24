@@ -5,6 +5,9 @@
   "author": "Daniel Hernández <dhdezllerena94@gmail.com> (https://github.com/danielhdezller)",
   "private": true,
   "license": "UNLICENSED",
+  "engines" : { 
+    "node" : "18.13.0"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -24,7 +27,7 @@
     "typeorm:revert": "yarn typeorm migration:revert",
     "typeorm:run": "yarn typeorm:generateConfiguration; yarn typeorm migration:run",
     "typeorm:generateConfiguration": "node dist/bin/typeorm-config-generator.js",
-    "typeorm": "yarn typeorm:generateConfiguration && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d /dist/database/ormconfig.js",
+    "typeorm": "yarn typeorm:generateConfiguration && ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dist/bin/typeorm-config-generator.js",
     "lint:fix": "eslint \"{src,apps,libs,test,database/migrations,typeorm/repositories,typeorm/entities}/**/*.ts\" --fix"
   },
   "dependencies": {
