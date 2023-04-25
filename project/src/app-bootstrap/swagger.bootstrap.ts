@@ -53,7 +53,6 @@ export function configureDocumentationGenerator(
         'https://www.chat-room.com/en/legal-notice-and-conditions/',
       )
       .setVersion('1')
-      .addBearerAuth()
       .build();
 
     const document = SwaggerModule.createDocument(app, options);

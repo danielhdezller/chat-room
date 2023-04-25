@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from '../entities/user.entity';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
@@ -11,7 +11,11 @@ export class UserController {
 
   @Post()
   @ApiResponse({ type: User })
-  async createRoom(@Body() createUser: CreateUserDto) {
+  @ApiOperation({
+    summary: 'createUser',
+    description: 'Create a user.',
+  })
+  async createRoom(@Body() createUser: CreateUserDto): Promise<User> {
     return this.userService.createUser(createUser);
   }
 }
