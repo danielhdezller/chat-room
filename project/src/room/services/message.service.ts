@@ -15,4 +15,20 @@ export class MessageService {
     });
     return messageRepository.save(message);
   }
+
+  findLatestMessage(roomId: number): Promise<Message> {
+    const messageRepository = this.dataSource.getRepository(Message);
+    return messageRepository.findOne({
+      where: { roomId },
+      order: { createdAt: 'DESC' },
+    });
+  }
+
+  findMessages(roomId: number): Promise<Message[]> {
+    const messageRepository = this.dataSource.getRepository(Message);
+    return messageRepository.find({
+      where: { roomId },
+      order: { createdAt: 'DESC' },
+    });
+  }
 }

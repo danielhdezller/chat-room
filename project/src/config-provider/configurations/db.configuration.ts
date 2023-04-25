@@ -66,6 +66,8 @@ export class DBConfiguration {
       password: this.password,
       synchronize: false,
       database: this.database,
+      migrations: ['dist/database/migrations/**/*.js'],
+      entities: ['./**/*.entity.js'],
     };
   }
 }
