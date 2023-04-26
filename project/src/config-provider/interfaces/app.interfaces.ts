@@ -7,6 +7,7 @@
 export enum EnvironmentModes {
   Development = 'Development',
   Production = 'Production',
+  Test = 'Test',
 }
 
 /**

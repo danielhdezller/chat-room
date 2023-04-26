@@ -9,7 +9,7 @@ const config = async () => {
 
   await configProviderService.init();
   const configuration = configProviderService.getAppConfiguration();
-  const typeOrmConfig = configuration.getTypeOrmConfig();
+  const typeOrmConfig = configuration.getTypeOrmConfig(configuration.mode);
 
   const config = {
     ...typeOrmConfig,

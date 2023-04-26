@@ -70,4 +70,24 @@ export class DBConfiguration {
       entities: ['./**/*.entity.js'],
     };
   }
+
+  /**
+   * Return the typeOrm config which should be used the app in Testing Mode.
+   *
+   * @return {*}  {PostgresConnectionOptions}
+   * @memberof DBConfiguration
+   */
+  getTypeOrmConfigForTest(): PostgresConnectionOptions {
+    return {
+      type: 'postgres',
+      host: this.host,
+      port: parseInt(this.port),
+      username: this.user,
+      password: this.password,
+      synchronize: false,
+      database: this.database,
+      migrations: ['dist/database/migrations/**/*.ts'],
+      entities: ['./**/*.entity.ts'],
+    };
+  }
 }

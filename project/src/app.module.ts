@@ -12,7 +12,7 @@ import { AppConfiguration } from './config-provider/configurations/app.configura
       imports: [AppConfigModule.deferred()],
       inject: [AppConfiguration],
       useFactory: async (appConfiguration: AppConfiguration) => {
-        return appConfiguration.getTypeOrmConfig();
+        return appConfiguration.getTypeOrmConfig(appConfiguration.mode);
       },
     }),
     // Configuration provider module

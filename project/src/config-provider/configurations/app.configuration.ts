@@ -127,7 +127,10 @@ export class AppConfiguration {
    * @returns {*}
    * @memberof AppConfiguration
    */
-  getTypeOrmConfig(): PostgresConnectionOptions {
+  getTypeOrmConfig(mode: EnvironmentModes): PostgresConnectionOptions {
+    if (mode === EnvironmentModes.Test) {
+      return this.dbConfiguration.getTypeOrmConfigForTest();
+    }
     return this.dbConfiguration.getTypeOrmConfig();
   }
 

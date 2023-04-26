@@ -1,0 +1,19 @@
+{
+    "appName": "ChatRoom",
+    "appPort": "3000",
+    "sessionTTL": 86400,
+    "mode": "Test", 
+    "appSecretKey": "bCEr0PATATACYQd7",
+    "dbConfiguration": {
+        "host": "localhost",
+        "port": "5432",
+        "user": "ChatRoomAppUser",
+        "password": "ChatRoom123!",
+        "database": "ChatRoom"
+    },
+    "apiConfiguration": {
+        "ignoreCredentials": true,
+        "user": "chatRoomUser",
+        "password": "chat-room-api-1234"
+    }
+}
